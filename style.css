@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Borel&family=Montserrat:wght@400;700&family=Sedgwick+Ave+Display&display=swap");
+:root {
+  --color: black;
+  --spacing: 3vw;
+  --spacing-h: 3vh;
+  --transition: all .3s ease-out;
+  --title-size: 3vw;
+  --box-title-size: clamp(24px, var(--title-size), 36px);
+}
+
+.blue {
+  --color: oklab(0.6 -0.07 -0.23);
+}
+
+.green {
+  --color: oklab(0.76 -0.19 0.03);
+}
+
+.red {
+  --color: oklab(0.74 0.19 0.06);
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+p {
+  line-height: 1.6em;
+  font-size: 1rem;
+  margin-bottom: 2em;
+}
+
+.box-container {
+  display: flex;
+  height: calc(100dvh - var(--spacing) * 2);
+  padding: var(--spacing);
+  gap: var(--spacing);
+}
+
+.box {
+  max-height: 100%;
+  min-width: clamp(80px, var(--spacing) * 2, 120px);
+  border-radius: 8px;
+  background: linear-gradient(0deg, var(--color), color-mix(in srgb, var(--color) 75%, white));
+  position: relative;
+  overflow-y: hidden;
+  padding: 0;
+  transition: var(--transition), minWidth 5s;
+  color: white;
+}
+.box:has([name=box]:checked) {
+  flex: 1;
+  padding: calc(var(--spacing-h) * 4) calc(var(--spacing) * 2);
+}
+.box:has([name=box]:checked) .pet {
+  translate: -25% 0;
+  width: 200px;
+  bottom: -20px;
+}
+.box:has([name=box]:checked) .box-title {
+  rotate: 0deg;
+  position: relative;
+  translate: none;
+  left: inherit;
+  margin-bottom: 0.75em;
+  font-size: clamp(24px, var(--title-size) * 1.825, 72px);
+}
+.box:has([name=box]:checked) p,
+.box:has([name=box]:checked) .button {
+  max-width: 100%;
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity 0.3s ease-in 0.25s, translate 0.3s ease-in 0.25s, maxWidth 0s;
+}
+.box:has([name=box]:checked) .radio-label {
+  cursor: inherit;
+}
+.box:hover .pet {
+  translate: -25% 0;
+}
+
+.box-content {
+  position: relative;
+}
+
+p,
+.button {
+  max-width: 0;
+  opacity: 0;
+  translate: 0 -5px;
+  transition: all 0s ease-in;
+}
+
+.button {
+  display: inline-block;
+  translate: 0 -10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 0.75em 2.5em;
+  background: color-mix(in srgb, var(--color) 8%, white);
+  border-radius: 100px;
+  color: color-mix(in srgb, var(--color) 70%, black);
+  box-shadow: 15px 15px 20px color-mix(in srgb, var(--color) 95%, black);
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease-in;
+}
+
+.button:hover {
+  color: color-mix(in srgb, var(--color) 90%, black);
+  background: color-mix(in srgb, var(--color) 0%, white);
+}
+
+.box-title {
+  font-family: "Borel", cursive;
+  position: absolute;
+  margin: 0;
+  line-height: 1em;
+  text-shadow: 1px 1px 2px color-mix(in srgb, var(--color) 95%, black);
+  font-size: var(--box-title-size);
+  left: calc((var(--spacing) * 1.5 + 2em) / 2);
+  top: var(--spacing);
+  transform-origin: 0 0;
+  rotate: 90deg;
+  transition: var(--transition);
+}
+
+.radio {
+  display: none;
+}
+
+.radio-label {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.pet {
+  width: 100px;
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  rotate: 20deg;
+  translate: -25% 100%;
+  transition: var(--transition);
+}
+
+/*# sourceMappingURL=style.css.map */
